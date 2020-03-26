@@ -1,0 +1,91 @@
+<style>
+  #profile
+  {
+      position: absolute;
+      top:60px;
+      left:20px;
+      transition: transform 0.8s ease-in-out;
+      display: none;
+      z-index: 10;
+  }
+  /* Add Zoom Animation */
+   .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+
+  #confirmbox
+  {z-index: 100;
+    display: none;
+    width: 20%;
+    border:1px solid var(--mycolor);
+    border-radius: 5px;
+    position: absolute;
+    top:200px;
+    left: 35%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+  @media(max-width: 400px)
+  {
+    #profile-link
+    {
+        display: none;
+    } 
+  }
+</style>
+<div class="login-triangle" id="login-triangle"></div>
+<div id="profile" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="../logo.jpeg" width="318" height="180" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= user.name %></h5>
+          <p class="card-text">Birth Date: <%= (user.dob).toLocaleDateString() %></p>
+          <p class="card-text">Email : <%= user.email %></p>
+          <a onclick="document.getElementById('confirmbox').style.display='block'" class="btn btn-primary" style="color: #fff;">Delete Account</a>
+        </div>
+      </div>    
+</div>
+<div class="card w-40 animate" id="confirmbox">
+  <div class="card-body">
+    <h5 class="card-title">Are you sure?</h5>
+    <button class="btn btn-secondary" onclick="document.getElementById('confirmbox').style.display='none'" style="margin-left:5px;margin-top:5px">Cancel</button>
+    <p class="card-text" style="margin-left:50%;margin-top:-37px"><a class="btn btn-danger" href="deleteuser/<%= user._id %>" style="color: #fff;">Delete Account</a></p>
+  </div>
+</div>
+
+
+<script>
+  var x = document.getElementById("profile");
+  var y = document.getElementById("login-triangle");
+  var pflag=0;
+function flipprofile()
+  {
+     if(pflag===0)
+     {
+          x.style.display="block";
+          y.style.display="block";
+          pflag=1;
+          x.style.transform = "rotateY(180deg)";
+     }
+     else{
+          x.style.transform = "rotateY(180deg)";
+          x.style.display="none";
+          y.style.display="none";
+          pflag=0;
+     }
+     
+      setTimeout(()=>{
+          x.style.transform="rotateY(360deg)"
+      },200);
+  }
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Oswald:400,500,700&display=swap');
+            :root{
+            --mycolor:#660f5f;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Oswald', sans-serif;
+        }
+        body{
+            background: #e6b2c6;
+            background: -webkit-linear-gradient(to right, #e6b2c6, #d6e5fa);
+            background: linear-gradient(to right, #e6b2c6, #d6e5fa);
+        }
+
+
+    </style>
+</head>
+<body>
+    <%- include("_profile.ejs") %>
+    <%- include("_header_.ejs") %>
+    <%- include("newpost.ejs") %>
+        <div class="card" style="width: 60%;margin-left:20%;margin-top:100px">
+            <h5 class="card-header"><%= post.creater.name%></h5>
+                <div class="card-body">
+                    <h5 class="card-title"><%= post.title%></h5>
+                    <p class="card-text"><%= post.description%></p>
+                    <% if(post.commentcount>0){%>
+                        <a href="/comments/<%= user._id%>/<%= post._id%>" class="btn btn-primary">Comments<sup><%= post.commentcount%></sup></a>
+                    <%}%>
+                   <% if(post.creater._id.equals(user._id)){%>
+                    <a href="/deletepost/<%= post._id%>" class="btn btn-danger">Delete</a>
+                <%}%>
+                    <br><br>
+                    <form action="/addcomment/<%= user._id%>/<%= post._id%>" method="post">
+                        <input type="text" style="height: 38px;border-radius:5px;padding-left:10px;width:60%" name="description" placeholder="Comment..">
+                        <input type="submit" class="btn btn-warning" style="width: 15%;margin-top:-7px;text-align:center" value="comment">
+                    </form><br><br>
+                    <% post.comments.forEach(comment=>{%>
+                        <div class="card w-90">
+                            <div class="card-body">
+                              <h5 class="card-title"><%= comment.commenter.name%></h5>
+                              <p class="card-text"><%= comment.description%></p>
+                            </div>
+                          </div>
+                    <%})%>
+                </div>
+             </div>      
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   </body>
+   </html>

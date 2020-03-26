@@ -1,0 +1,45 @@
+<style>
+  .card{
+    width: 100%;
+    margin-top: 10px;
+  }
+  #post
+  {
+    margin-left: 10%;
+    padding: 10px;
+    border: 1px solid var(--mycolor);
+    width: 40%;
+    margin-top: 20px;
+    background: var(--mycolor);
+  }
+  form input
+  {
+    width: 80%;
+    height: 50px;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+</style>
+<div id="post">
+<% posts.forEach(post=>{ %>
+<div class="card">
+    <h5 class="card-header"><%= post.creater.name%></h5>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title%></h5>
+      <p class="card-text"><%= post.description%></p>
+      <% if(post.commentcount>0){%>
+      <a href="/comments/<%= user._id%>/<%= post._id%>" class="btn btn-primary">Comments<sup><%= post.commentcount%></sup></a>
+      <%}%>
+      <% if(post.creater._id.equals(user._id)){%>
+      <a href="/deletepost/<%= post._id%>" class="btn btn-danger">Delete</a>
+      <%}%>
+      <br><br>
+      <form action="/addcomment/<%= user._id%>/<%= post._id%>" method="post">
+        <input type="text" name="description" placeholder="Comment..">
+        <input type="submit" class="btn btn-warning" style="width: 15%;margin-top:-7px;text-align:center" value="comment">
+      </form>
+    </div>
+  </div>
+  <%})%>
+</div>

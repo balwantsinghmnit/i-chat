@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <title>Login System</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        } 
+
+        body {
+          background: #456;
+          font-family: 'Open Sans', sans-serif;
+        }
+        
+        .login {
+          width: 400px;
+          margin: 16px auto;
+          margin-top:200px;
+          font-size: 16px;
+        }
+        
+        /* Reset top and bottom margins from certain elements */
+        .login-header,
+        .login p {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+        
+        /* The triangle form is achieved by a CSS hack */
+        .login-triangle {
+          width: 0;
+          margin-right: auto;
+          margin-left: auto;
+          border: 12px solid transparent;
+          border-bottom-color: #28d;
+        }
+        
+        .login-header {
+          background: #28d;
+          padding: 20px;
+          font-size: 1.4em;
+          font-weight: normal;
+          text-align: center;
+          text-transform: uppercase;
+          color: #fff;
+        }
+        
+        .login-container {
+          background: #ebebeb;
+          padding: 12px;
+        }
+        
+        /* Every row inside .login-container is defined with p tags */
+        .login p {
+          padding: 12px;
+        }
+        
+        .login input {
+          box-sizing: border-box;
+          display: block;
+          width: 100%;
+          border-width: 1px;
+          border-style: solid;
+          padding: 16px;
+          outline: 0;
+          font-family: inherit;
+          font-size: 0.95em;
+        }
+        
+        .login input[type="email"],
+        .login input[type="password"] {
+          background: #fff;
+          border-color: #bbb;
+          color: #555;
+        }
+        
+        /* Text fields' focus effect */
+        .login input[type="email"]:focus,
+        .login input[type="password"]:focus {
+          border-color: #888;
+        }
+        
+        .login input[type="submit"] {
+          background: #28d;
+          border-color: transparent;
+          color: #fff;
+          cursor: pointer;
+        }
+        
+        .login input[type="submit"]:hover {
+          background: #17c;
+        }
+        
+        /* Buttons' focus effect */
+        .login input[type="submit"]:focus {
+          border-color: #05a;
+        }
+        #logindiv
+        {
+            width:400px;
+            height: 80px;
+            background: #28d;
+            border-radius: 30px;
+            padding-top: 20px;
+            margin-top: 100px;
+        }
+        #logindiv h2
+        {
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="login">
+            <div class="login-triangle"></div>
+            
+            <h2 class="login-header">Log in</h2>
+            <%- include("../partials/messages")  %>
+            <form method="post" action="/user/login" class="login-container">
+              <p><input required name="mobile"  type="number" placeholder="Mobile No"></p>
+              <p><input required name="password"  type="password" placeholder="Password"></p>
+              <p><input  type="submit" value="Log in"></p>
+              <p><a href="/user/register">Create new account</a></p>
+            </form>
+          </div>
+    </center>
+</body>
+</html>
