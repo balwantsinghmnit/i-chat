@@ -40,12 +40,26 @@ router.post("/addcomment/:id/:postid",ensureAuthenticated,async (req,res)=>{
   post.commentcount = post.commentcount+1;
   const user = await User.findOne({_id:req.params.id});
   const comment = {
+      id:Date.now(),
       description:req.body.description,
       commenter:user
   };
   post.comments.push(comment);
   post.save();
   res.render(`user/comments`,{user:user,post:post});
+});
+
+//delete comment handle
+router.get("/deletecomment/:postid/:commentid",ensureAuthenticated,async(req,res)=>{
+  const post = await Post.findOne({_id:req.params.postid});
+  if(post==null)
+  res.redirect("/dashboard");
+  comments = post.comments;
+  comments = comments.filter(comment=>comment.id!=req.params.commentid);
+  post.comments = comments;
+  post.commentcount = post.commentcount-1;
+  post.save();
+  res.redirect("/dashboard");
 });
 
 //post comments handle

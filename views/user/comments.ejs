@@ -49,7 +49,10 @@
                     <% post.comments.forEach(comment=>{%>
                         <div class="card w-90">
                             <div class="card-body">
-                              <h5 class="card-title"><%= comment.commenter.name%></h5>
+                                <% if((user._id).equals(comment.commenter._id)){%>
+                                    <a href="/deletecomment/<%= post._id%>/<%= comment.id%>" class="btn btn-danger" style="float: right;color:white">x</a>
+                                <%}%>
+                                <h5 class="card-title"><%= comment.commenter.name%></h5>
                               <p class="card-text"><%= comment.description%></p>
                             </div>
                           </div>

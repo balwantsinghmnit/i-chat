@@ -1,3 +1,3 @@
 module.exports={
-    MongoURI : 'your mongo atlas uri'
+    MongoURI : 'you uri'
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
-    <title>Register System</title>
+    <title>Login System</title>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
         *{
@@ -13,7 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Open Sans', sans-serif;
-        }
+        } 
 
         body {
           background: #456;
@@ -23,6 +23,7 @@
         .login {
           width: 400px;
           margin: 16px auto;
+          margin-top:200px;
           font-size: 16px;
         }
         
@@ -73,10 +74,8 @@
           font-family: inherit;
           font-size: 0.95em;
         }
-        .login input[type="text"],
-        .login input[type="number"],
-        .login input[type="date"],
-        .login input[type="email"],.login input[type="file"],
+        
+        .login input[type="email"],
         .login input[type="password"] {
           background: #fff;
           border-color: #bbb;
@@ -84,11 +83,7 @@
         }
         
         /* Text fields' focus effect */
-        .login input[type="date"]:focus,
-        .login input[type="text"]:focus,
-        .login input[type="number"]:focus,
         .login input[type="email"]:focus,
-        .login input[type="file"]:focus,
         .login input[type="password"]:focus {
           border-color: #888;
         }
@@ -115,7 +110,7 @@
             background: #28d;
             border-radius: 30px;
             padding-top: 20px;
-            margin-top: 70px;
+            margin-top: 100px;
         }
         #logindiv h2
         {
@@ -125,21 +120,15 @@
 </head>
 <body>
     <center>
-
         <div class="login">
             <div class="login-triangle"></div>
             
-            <h2 class="login-header">Register</h2>
+            <h2 class="login-header">Admin Log in</h2>
             <%- include("../partials/messages")  %>
-            <form method="post" action="/user/register" class="login-container" >
-              <p><input required type="text" name="name" placeholder="Full Name"></p>
-              <p><input required type="number" name="mobile"  placeholder="Mobile No"></p>
-              <p><input required type="email" name="email" placeholder="Email"></p>
-              <p><input required type="password" name="password" placeholder="Password"></p>
-              <p><input required type="password" name="password2" placeholder="Confirm Password"></p>
-              <p><input required type="date" name="dob" id=""></p>
-              <p><input type="submit" value="Register"></p>
-              <p>Already have an account? <a href="/">Login</a></p>
+            <form method="post" action="/admin/login" class="login-container">
+              <p><input required name="mobile"  type="number" placeholder="Mobile No"></p>
+              <p><input required name="password"  type="password" placeholder="Password"></p>
+              <p><input  type="submit" value="Log in"></p>
             </form>
           </div>
     </center>
